@@ -30,6 +30,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvParticipants)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRankings)).BeginInit();
             this.SuspendLayout();
+
+            // Define columns for dgvParticipants
+            this.dgvParticipants.Columns.Add("TeamOrIndividual", "Team/Individual");
+            this.dgvParticipants.Columns.Add("ParticipantName", "Participant Name");
+            this.dgvParticipants.Columns.Add("TotalScore", "Total Score");
+
+            // Define columns for dgvRankings
+            this.dgvRankings.Columns.Add("ParticipantName", "Participant Name");
+            this.dgvRankings.Columns.Add("TotalScore", "Total Score");
+
             // 
             // txtTeamName
             // 
@@ -38,6 +48,7 @@
             this.txtTeamName.Size = new System.Drawing.Size(150, 20);
             this.txtTeamName.TabIndex = 0;
             this.txtTeamName.Text = "Team Name";
+
             // 
             // txtTeamMembers
             // 
@@ -46,6 +57,7 @@
             this.txtTeamMembers.Size = new System.Drawing.Size(150, 20);
             this.txtTeamMembers.TabIndex = 1;
             this.txtTeamMembers.Text = "Team Members (comma-separated)";
+
             // 
             // txtIndividualName
             // 
@@ -54,6 +66,7 @@
             this.txtIndividualName.Size = new System.Drawing.Size(150, 20);
             this.txtIndividualName.TabIndex = 2;
             this.txtIndividualName.Text = "Individual Name";
+
             // 
             // txtParticipantName
             // 
@@ -62,6 +75,7 @@
             this.txtParticipantName.Size = new System.Drawing.Size(150, 20);
             this.txtParticipantName.TabIndex = 3;
             this.txtParticipantName.Text = "Participant Name";
+
             // 
             // txtScore
             // 
@@ -70,6 +84,7 @@
             this.txtScore.Size = new System.Drawing.Size(150, 20);
             this.txtScore.TabIndex = 4;
             this.txtScore.Text = "Score";
+
             // 
             // txtEvent
             // 
@@ -78,6 +93,7 @@
             this.txtEvent.Size = new System.Drawing.Size(150, 20);
             this.txtEvent.TabIndex = 5;
             this.txtEvent.Text = "Event";
+
             // 
             // btnAddTeam
             // 
@@ -88,6 +104,7 @@
             this.btnAddTeam.Text = "Add Team";
             this.btnAddTeam.UseVisualStyleBackColor = true;
             this.btnAddTeam.Click += new System.EventHandler(this.btnAddTeam_Click);
+
             // 
             // btnAddIndividual
             // 
@@ -98,6 +115,7 @@
             this.btnAddIndividual.Text = "Add Individual";
             this.btnAddIndividual.UseVisualStyleBackColor = true;
             this.btnAddIndividual.Click += new System.EventHandler(this.btnAddIndividual_Click);
+
             // 
             // btnRecordScore
             // 
@@ -108,6 +126,7 @@
             this.btnRecordScore.Text = "Record Score";
             this.btnRecordScore.UseVisualStyleBackColor = true;
             this.btnRecordScore.Click += new System.EventHandler(this.btnRecordScore_Click);
+
             // 
             // btnShowRankings
             // 
@@ -118,6 +137,7 @@
             this.btnShowRankings.Text = "Show Rankings";
             this.btnShowRankings.UseVisualStyleBackColor = true;
             this.btnShowRankings.Click += new System.EventHandler(this.btnShowRankings_Click);
+
             // 
             // dgvParticipants
             // 
@@ -126,6 +146,7 @@
             this.dgvParticipants.Name = "dgvParticipants";
             this.dgvParticipants.Size = new System.Drawing.Size(776, 150);
             this.dgvParticipants.TabIndex = 10;
+
             // 
             // dgvRankings
             // 
@@ -134,6 +155,7 @@
             this.dgvRankings.Name = "dgvRankings";
             this.dgvRankings.Size = new System.Drawing.Size(776, 150);
             this.dgvRankings.TabIndex = 11;
+
             // 
             // MainForm
             // 
@@ -157,6 +179,7 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
 
         private System.Windows.Forms.TextBox txtTeamName;
         private System.Windows.Forms.TextBox txtTeamMembers;

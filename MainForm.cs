@@ -5,8 +5,10 @@ using System.Windows.Forms;
 
 namespace TournamentScoringSystem
 {
+
     public partial class MainForm : Form
     {
+
         private Dictionary<string, List<Participant>> teams;
         private List<Participant> individuals;
 
@@ -51,7 +53,11 @@ namespace TournamentScoringSystem
         private void btnRecordScore_Click(object sender, EventArgs e)
         {
             string participantName = txtParticipantName.Text;
-            int score = int.Parse(txtScore.Text);
+            if (!int.TryParse(txtScore.Text, out int score))
+            {
+                MessageBox.Show("Invalid score value.");
+                return;
+            }
             string eventName = txtEvent.Text;
 
             foreach (var team in teams.Values)
