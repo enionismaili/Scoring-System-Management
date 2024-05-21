@@ -5,29 +5,47 @@ using System.Windows.Forms;
 
 namespace TournamentScoringSystem
 {
-
     public partial class MainForm : Form
     {
-
         private Dictionary<string, List<Participant>> teams;
         private List<Participant> individuals;
+        private int teamCount;
+        private int individualCount;
+        private const int MaxTeams = 4;
+        private const int MaxIndividuals = 20;
+        private const int MaxEvents = 5;
 
         public MainForm()
         {
             InitializeComponent();
             teams = new Dictionary<string, List<Participant>>();
             individuals = new List<Participant>();
+            teamCount = 0;
+            individualCount = 0;
         }
 
         private void btnAddTeam_Click(object sender, EventArgs e)
         {
+            if (teamCount >= MaxTeams)
+            {
+                MessageBox.Show("Maximum number of teams reached.");
+                return;
+            }
+
             string teamName = txtTeamName.Text;
             string[] memberNames = txtTeamMembers.Text.Split(',');
 
+            if (memberNames.Length != 5)
+            {
+                MessageBox.Show("Each team must have 5 members.");
+                return;
+            }
+
             if (!teams.ContainsKey(teamName))
             {
-                var members = memberNames.Select(name => new Participant(name.Trim())).ToList();
+                var members = memberNames.Select(name => new Participant(name.Trim(), "Team")).ToList();
                 teams[teamName] = members;
+                teamCount++;
                 UpdateParticipantList();
             }
             else
@@ -38,10 +56,17 @@ namespace TournamentScoringSystem
 
         private void btnAddIndividual_Click(object sender, EventArgs e)
         {
+            if (individualCount >= MaxIndividuals)
+            {
+                MessageBox.Show("Maximum number of individual participants reached.");
+                return;
+            }
+
             string name = txtIndividualName.Text;
             if (!individuals.Any(p => p.Name == name))
             {
-                individuals.Add(new Participant(name));
+                individuals.Add(new Participant(name, "Individual"));
+                individualCount++;
                 UpdateParticipantList();
             }
             else
@@ -65,6 +90,11 @@ namespace TournamentScoringSystem
                 var member = team.FirstOrDefault(p => p.Name == participantName);
                 if (member != null)
                 {
+                    if (member.Scores.Count >= MaxEvents)
+                    {
+                        MessageBox.Show("Participant has already completed the maximum number of events.");
+                        return;
+                    }
                     member.AddScore(eventName, score);
                     UpdateParticipantList();
                     return;
@@ -74,6 +104,11 @@ namespace TournamentScoringSystem
             var individual = individuals.FirstOrDefault(p => p.Name == participantName);
             if (individual != null)
             {
+                if (individual.Scores.Count >= MaxEvents)
+                {
+                    MessageBox.Show("Participant has already completed the maximum number of events.");
+                    return;
+                }
                 individual.AddScore(eventName, score);
                 UpdateParticipantList();
             }
@@ -111,27 +146,5 @@ namespace TournamentScoringSystem
                 dgvParticipants.Rows.Add("Individual", individual.Name, individual.TotalScore());
             }
         }
-    }
-
-    public class Participant
-    {
-        public string Name { get; set; }
-        public List<(string Event, int Score)> Scores { get; private set; }
-
-        public Participant(string name)
-        {
-            Name = name;
-            Scores = new List<(string Event, int Score)>();
-        }
-
-        public void AddScore(string eventName, int score)
-        {
-            Scores.Add((eventName, score));
-        }
-
-        public int TotalScore()
-        {
-            return Scores.Sum(s => s.Score);
-        }
-    }
+    }    
 }
