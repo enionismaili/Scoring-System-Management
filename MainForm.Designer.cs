@@ -127,6 +127,7 @@
             // 
             // dgvParticipants
             // 
+            this.dgvParticipants.BackgroundColor = System.Drawing.SystemColors.MenuHighlight;
             this.dgvParticipants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvParticipants.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
@@ -139,6 +140,7 @@
             // 
             // dgvRankings
             // 
+            this.dgvRankings.BackgroundColor = System.Drawing.SystemColors.GrayText;
             this.dgvRankings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRankings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -175,6 +177,7 @@
             // 
             // MainForm
             // 
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 488);
             this.Controls.Add(this.dgvRankings);
             this.Controls.Add(this.dgvParticipants);
