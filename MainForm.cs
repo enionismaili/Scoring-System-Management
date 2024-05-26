@@ -15,6 +15,8 @@ namespace TournamentScoringSystem
         private const int MaxIndividuals = 20;
         private const int MaxEvents = 5;
 
+        private Dictionary<string, int[]> eventPoints; // Dictionary to hold points for events
+
         public MainForm()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace TournamentScoringSystem
             individuals = new List<Participant>();
             teamCount = 0;
             individualCount = 0;
+            eventPoints = new Dictionary<string, int[]>(); // Initialize event points
         }
 
         private void btnAddTeam_Click(object sender, EventArgs e)
@@ -78,6 +81,7 @@ namespace TournamentScoringSystem
         private void btnRecordScore_Click(object sender, EventArgs e)
         {
             string participantName = txtParticipantName.Text;
+            string eventType = txtEventType.Text; // Get the event type
             if (!int.TryParse(txtScore.Text, out int score))
             {
                 MessageBox.Show("Invalid score value.");
@@ -95,7 +99,7 @@ namespace TournamentScoringSystem
                         MessageBox.Show("Participant has already completed the maximum number of events.");
                         return;
                     }
-                    member.AddScore(eventName, score);
+                    member.AddScore(eventName, score, eventType); // Include event type
                     UpdateParticipantList();
                     return;
                 }
@@ -109,7 +113,7 @@ namespace TournamentScoringSystem
                     MessageBox.Show("Participant has already completed the maximum number of events.");
                     return;
                 }
-                individual.AddScore(eventName, score);
+                individual.AddScore(eventName, score, eventType); // Include event type
                 UpdateParticipantList();
             }
             else
@@ -121,6 +125,19 @@ namespace TournamentScoringSystem
         private void btnShowRankings_Click(object sender, EventArgs e)
         {
             var allParticipants = teams.Values.SelectMany(team => team).Concat(individuals).ToList();
+
+            // Rank participants for each event and assign points
+            foreach (var eventGroup in allParticipants.SelectMany(p => p.Scores).GroupBy(s => s.Event))
+            {
+                var rankedParticipants = eventGroup.OrderByDescending(s => s.Score).ToList();
+                for (int i = 0; i < rankedParticipants.Count; i++)
+                {
+                    int points = GetPointsForRank(eventGroup.Key, i + 1);
+                    var participant = allParticipants.First(p => p.Scores.Contains(rankedParticipants[i]));
+                    participant.AddScore(eventGroup.Key, points, rankedParticipants[i].EventType);
+                }
+            }
+
             var rankings = allParticipants.OrderByDescending(p => p.TotalScore()).ToList();
 
             dgvRankings.Rows.Clear();
@@ -130,6 +147,16 @@ namespace TournamentScoringSystem
             }
         }
 
+        private int GetPointsForRank(string eventName, int rank)
+        {
+            if (eventPoints.ContainsKey(eventName))
+            {
+                var pointsArray = eventPoints[eventName];
+                return rank <= pointsArray.Length ? pointsArray[rank - 1] : 0;
+            }
+            return 0; // Default points if not defined
+        }
+
         private void UpdateParticipantList()
         {
             dgvParticipants.Rows.Clear();
@@ -137,14 +164,44 @@ namespace TournamentScoringSystem
             {
                 foreach (var member in team.Value)
                 {
-                    dgvParticipants.Rows.Add(team.Key, member.Name, member.TotalScore());
+                    foreach (var score in member.Scores)
+                    {
+                        dgvParticipants.Rows.Add(team.Key, member.Name, member.TotalScore(), score.EventType); // Include event type
+                    }
                 }
             }
 
             foreach (var individual in individuals)
             {
-                dgvParticipants.Rows.Add("Individual", individual.Name, individual.TotalScore());
+                foreach (var score in individual.Scores)
+                {
+                    dgvParticipants.Rows.Add("Individual", individual.Name, individual.TotalScore(), score.EventType); // Include event type
+                }
             }
         }
-    }    
+    }
+
+    public class Participant
+    {
+        public string Name { get; set; }
+        public string Type { get; private set; } // Team or Individual
+        public List<(string Event, int Score, string EventType)> Scores { get; private set; } // Include event type
+
+        public Participant(string name, string type)
+        {
+            Name = name;
+            Type = type;
+            Scores = new List<(string Event, int Score, string EventType)>();
+        }
+
+        public void AddScore(string eventName, int score, string eventType) // Include event type
+        {
+            Scores.Add((eventName, score, eventType));
+        }
+
+        public int TotalScore()
+        {
+            return Scores.Sum(s => s.Score);
+        }
+    }
 }
