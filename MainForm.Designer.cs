@@ -15,6 +15,10 @@
 
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitle = new System.Windows.Forms.Label();
             this.grpAddTeam = new System.Windows.Forms.GroupBox();
             this.lblTeamName = new System.Windows.Forms.Label();
@@ -43,15 +47,15 @@
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
-            this.pnlRight = new System.Windows.Forms.Panel();
             this.btnShowRankings = new System.Windows.Forms.Button();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlRight = new System.Windows.Forms.Panel();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpAddTeam.SuspendLayout();
             this.grpAddIndividual.SuspendLayout();
             this.grpRecordScore.SuspendLayout();
@@ -277,29 +281,51 @@
             // 
             // dgvParticipants
             // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
+            this.dgvParticipants.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvParticipants.BackgroundColor = System.Drawing.Color.White;
             this.dgvParticipants.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvParticipants.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvParticipants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvParticipants.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
-            this.dgvParticipants.Location = new System.Drawing.Point(452, 20);
+            this.dgvParticipants.EnableHeadersVisualStyles = false;
+            this.dgvParticipants.Location = new System.Drawing.Point(449, 31);
             this.dgvParticipants.Name = "dgvParticipants";
             this.dgvParticipants.Size = new System.Drawing.Size(600, 320);
             this.dgvParticipants.TabIndex = 5;
             // 
             // dgvRankings
             // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
+            this.dgvRankings.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRankings.BackgroundColor = System.Drawing.Color.White;
             this.dgvRankings.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRankings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRankings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRankings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
-            this.dgvRankings.Location = new System.Drawing.Point(452, 385);
+            this.dgvRankings.EnableHeadersVisualStyles = false;
+            this.dgvRankings.Location = new System.Drawing.Point(449, 400);
             this.dgvRankings.Name = "dgvRankings";
             this.dgvRankings.Size = new System.Drawing.Size(600, 320);
             this.dgvRankings.TabIndex = 6;
@@ -350,15 +376,28 @@
             // pnlLeft
             // 
             this.pnlLeft.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.pnlLeft.Controls.Add(this.btnShowRankings);
             this.pnlLeft.Controls.Add(this.grpAddTeam);
             this.pnlLeft.Controls.Add(this.grpAddIndividual);
             this.pnlLeft.Controls.Add(this.grpRecordScore);
+            this.pnlLeft.Controls.Add(this.btnShowRankings);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Size = new System.Drawing.Size(400, 791);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // btnShowRankings
+            // 
+            this.btnShowRankings.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnShowRankings.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnShowRankings.ForeColor = System.Drawing.Color.White;
+            this.btnShowRankings.Location = new System.Drawing.Point(20, 735);
+            this.btnShowRankings.Name = "btnShowRankings";
+            this.btnShowRankings.Size = new System.Drawing.Size(200, 35);
+            this.btnShowRankings.TabIndex = 9;
+            this.btnShowRankings.Text = "Show Rankings";
+            this.btnShowRankings.UseVisualStyleBackColor = false;
+            this.btnShowRankings.Click += new System.EventHandler(this.btnShowRankings_Click);
             // 
             // pnlRight
             // 
@@ -373,23 +412,32 @@
             this.pnlRight.Size = new System.Drawing.Size(1084, 791);
             this.pnlRight.TabIndex = 1;
             // 
-            // btnShowRankings
+            // dataGridViewTextBoxColumn4
             // 
-            this.btnShowRankings.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnShowRankings.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnShowRankings.ForeColor = System.Drawing.Color.White;
-            this.btnShowRankings.Location = new System.Drawing.Point(93, 707);
-            this.btnShowRankings.Name = "btnShowRankings";
-            this.btnShowRankings.Size = new System.Drawing.Size(200, 35);
-            this.btnShowRankings.TabIndex = 9;
-            this.btnShowRankings.Text = "Show Rankings";
-            this.btnShowRankings.UseVisualStyleBackColor = false;
-            this.btnShowRankings.Click += new System.EventHandler(this.btnShowRankings_Click);
+            this.dataGridViewTextBoxColumn4.HeaderText = "Team/Individual";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Participant Name";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Event Type";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Total Score";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "Team/Individual";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 125;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -400,26 +448,6 @@
             // 
             this.dataGridViewTextBoxColumn3.HeaderText = "Total Score";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Team/Individual";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Participant Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Total Score";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Event Type";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
             // MainForm
             // 
