@@ -97,9 +97,9 @@ namespace TournamentScoringSystem
                 var member = team.FirstOrDefault(p => p.Name == participantName);
                 if (member != null)
                 {
-                    if (member.Scores.Count >= MaxEvents)
+                    if (member.Scores.Any(s => s.Event == eventName))
                     {
-                        MessageBox.Show("Participant has already completed the maximum number of events.");
+                        MessageBox.Show("Participant has already completed this event.");
                         return;
                     }
                     member.AddScore(eventName, score, eventType);
@@ -111,9 +111,9 @@ namespace TournamentScoringSystem
             var individual = individuals.FirstOrDefault(p => p.Name == participantName);
             if (individual != null)
             {
-                if (individual.Scores.Count >= MaxEvents)
+                if (individual.Scores.Any(s => s.Event == eventName))
                 {
-                    MessageBox.Show("Participant has already completed the maximum number of events.");
+                    MessageBox.Show("Participant has already completed this event.");
                     return;
                 }
                 individual.AddScore(eventName, score, eventType);
@@ -173,6 +173,26 @@ namespace TournamentScoringSystem
             foreach (var individual in individuals)
             {
                 dgvParticipants.Rows.Add("Individual", individual.Name, individual.TotalScore(), individual.Type);
+            }
+        }
+
+        private void btnUpdatePoints_Click(object sender, EventArgs e)
+        {
+            string eventName = txtEventName.Text;
+            string[] pointsText = txtEventPoints.Text.Split(',');
+            int[] points = pointsText.Select(p => int.TryParse(p, out var value) ? value : 0).ToArray();
+            UpdateEventPoints(eventName, points);
+        }
+
+        private void UpdateEventPoints(string eventName, int[] points)
+        {
+            if (eventPoints.ContainsKey(eventName))
+            {
+                eventPoints[eventName] = points;
+            }
+            else
+            {
+                eventPoints.Add(eventName, points);
             }
         }
     }
