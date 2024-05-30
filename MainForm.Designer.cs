@@ -15,11 +15,6 @@
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitle = new System.Windows.Forms.Label();
             this.grpAddTeam = new System.Windows.Forms.GroupBox();
             this.lblTeamName = new System.Windows.Forms.Label();
@@ -42,27 +37,28 @@
             this.txtEventType = new System.Windows.Forms.TextBox();
             this.btnRecordScore = new System.Windows.Forms.Button();
             this.dgvParticipants = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvRankings = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblParticipants = new System.Windows.Forms.Label();
             this.lblRankings = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanelLeft = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnShowRankings = new System.Windows.Forms.Button();
             this.grpConfigurePoints = new System.Windows.Forms.GroupBox();
             this.lblEventName = new System.Windows.Forms.Label();
             this.txtEventName = new System.Windows.Forms.TextBox();
             this.lblEventPoints = new System.Windows.Forms.Label();
             this.txtEventPoints = new System.Windows.Forms.TextBox();
             this.btnUpdatePoints = new System.Windows.Forms.Button();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnShowRankings = new System.Windows.Forms.Button();
+            this.pnlRight = new System.Windows.Forms.Panel();
             this.grpAddTeam.SuspendLayout();
             this.grpAddIndividual.SuspendLayout();
             this.grpRecordScore.SuspendLayout();
@@ -70,12 +66,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRankings)).BeginInit();
             this.pnlHeader.SuspendLayout();
             this.pnlContent.SuspendLayout();
-            this.flowLayoutPanelLeft.SuspendLayout();
-            this.grpConfigurePoints.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.flowLayoutPanelLeft.SuspendLayout();
+            this.grpConfigurePoints.SuspendLayout();
+            this.pnlRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -292,18 +289,11 @@
             // 
             // dgvParticipants
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            this.dgvParticipants.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvParticipants.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvParticipants.BackgroundColor = System.Drawing.Color.White;
             this.dgvParticipants.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvParticipants.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvParticipants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvParticipants.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn4,
@@ -311,42 +301,72 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
             this.dgvParticipants.EnableHeadersVisualStyles = false;
-            this.dgvParticipants.Location = new System.Drawing.Point(3, 3);
+            this.dgvParticipants.Location = new System.Drawing.Point(40, 52);
             this.dgvParticipants.Name = "dgvParticipants";
             this.dgvParticipants.Size = new System.Drawing.Size(600, 320);
             this.dgvParticipants.TabIndex = 5;
             // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Team/Individual";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Participant Name";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Event Type";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Total Score";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
             // dgvRankings
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
-            this.dgvRankings.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRankings.BackgroundColor = System.Drawing.Color.White;
             this.dgvRankings.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRankings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRankings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRankings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
             this.dgvRankings.EnableHeadersVisualStyles = false;
-            this.dgvRankings.Location = new System.Drawing.Point(3, 329);
+            this.dgvRankings.Location = new System.Drawing.Point(40, 442);
             this.dgvRankings.Name = "dgvRankings";
             this.dgvRankings.Size = new System.Drawing.Size(600, 320);
             this.dgvRankings.TabIndex = 6;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Team/Individual";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Participant Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Total Score";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // lblParticipants
             // 
             this.lblParticipants.AutoSize = true;
             this.lblParticipants.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblParticipants.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.lblParticipants.Location = new System.Drawing.Point(3, 0);
+            this.lblParticipants.ForeColor = System.Drawing.Color.Black;
+            this.lblParticipants.Location = new System.Drawing.Point(35, 10);
             this.lblParticipants.Name = "lblParticipants";
             this.lblParticipants.Size = new System.Drawing.Size(118, 25);
             this.lblParticipants.TabIndex = 7;
@@ -356,8 +376,8 @@
             // 
             this.lblRankings.AutoSize = true;
             this.lblRankings.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblRankings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.lblRankings.Location = new System.Drawing.Point(3, 326);
+            this.lblRankings.ForeColor = System.Drawing.Color.Black;
+            this.lblRankings.Location = new System.Drawing.Point(35, 409);
             this.lblRankings.Name = "lblRankings";
             this.lblRankings.Size = new System.Drawing.Size(94, 25);
             this.lblRankings.TabIndex = 8;
@@ -383,6 +403,23 @@
             this.pnlContent.Size = new System.Drawing.Size(1084, 791);
             this.pnlContent.TabIndex = 10;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.flowLayoutPanelLeft);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.pnlRight);
+            this.splitContainer1.Size = new System.Drawing.Size(1084, 791);
+            this.splitContainer1.SplitterDistance = 400;
+            this.splitContainer1.TabIndex = 11;
+            // 
             // flowLayoutPanelLeft
             // 
             this.flowLayoutPanelLeft.AutoScroll = true;
@@ -400,32 +437,6 @@
             this.flowLayoutPanelLeft.TabIndex = 0;
             this.flowLayoutPanelLeft.WrapContents = false;
             // 
-            // btnShowRankings
-            // 
-            this.btnShowRankings.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnShowRankings.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnShowRankings.ForeColor = System.Drawing.Color.White;
-            this.btnShowRankings.Location = new System.Drawing.Point(3, 652);
-            this.btnShowRankings.Name = "btnShowRankings";
-            this.btnShowRankings.Size = new System.Drawing.Size(200, 35);
-            this.btnShowRankings.TabIndex = 9;
-            this.btnShowRankings.Text = "Show Rankings";
-            this.btnShowRankings.UseVisualStyleBackColor = false;
-            this.btnShowRankings.Click += new System.EventHandler(this.btnShowRankings_Click);
-            // 
-            // pnlRight
-            // 
-            this.pnlRight.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlRight.Controls.Add(this.lblRankings);
-            this.pnlRight.Controls.Add(this.lblParticipants);
-            this.pnlRight.Controls.Add(this.dgvParticipants);
-            this.pnlRight.Controls.Add(this.dgvRankings);
-            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRight.Location = new System.Drawing.Point(0, 0);
-            this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(680, 791);
-            this.pnlRight.TabIndex = 1;
-            // 
             // grpConfigurePoints
             // 
             this.grpConfigurePoints.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
@@ -436,7 +447,7 @@
             this.grpConfigurePoints.Controls.Add(this.btnUpdatePoints);
             this.grpConfigurePoints.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.grpConfigurePoints.ForeColor = System.Drawing.Color.White;
-            this.grpConfigurePoints.Location = new System.Drawing.Point(3, 587);
+            this.grpConfigurePoints.Location = new System.Drawing.Point(3, 651);
             this.grpConfigurePoints.Name = "grpConfigurePoints";
             this.grpConfigurePoints.Size = new System.Drawing.Size(350, 200);
             this.grpConfigurePoints.TabIndex = 10;
@@ -448,7 +459,7 @@
             this.lblEventName.AutoSize = true;
             this.lblEventName.Location = new System.Drawing.Point(20, 40);
             this.lblEventName.Name = "lblEventName";
-            this.lblEventName.Size = new System.Drawing.Size(96, 21);
+            this.lblEventName.Size = new System.Drawing.Size(94, 21);
             this.lblEventName.TabIndex = 0;
             this.lblEventName.Text = "Event Name";
             // 
@@ -464,7 +475,7 @@
             this.lblEventPoints.AutoSize = true;
             this.lblEventPoints.Location = new System.Drawing.Point(20, 90);
             this.lblEventPoints.Name = "lblEventPoints";
-            this.lblEventPoints.Size = new System.Drawing.Size(93, 21);
+            this.lblEventPoints.Size = new System.Drawing.Size(94, 21);
             this.lblEventPoints.TabIndex = 2;
             this.lblEventPoints.Text = "Event Points";
             // 
@@ -487,59 +498,32 @@
             this.btnUpdatePoints.UseVisualStyleBackColor = false;
             this.btnUpdatePoints.Click += new System.EventHandler(this.btnUpdatePoints_Click);
             // 
-            // splitContainer1
+            // btnShowRankings
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
+            this.btnShowRankings.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnShowRankings.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnShowRankings.ForeColor = System.Drawing.Color.White;
+            this.btnShowRankings.Location = new System.Drawing.Point(3, 857);
+            this.btnShowRankings.Name = "btnShowRankings";
+            this.btnShowRankings.Size = new System.Drawing.Size(200, 35);
+            this.btnShowRankings.TabIndex = 9;
+            this.btnShowRankings.Text = "Show Rankings";
+            this.btnShowRankings.UseVisualStyleBackColor = false;
+            this.btnShowRankings.Click += new System.EventHandler(this.btnShowRankings_Click);
             // 
-            // splitContainer1.Panel1
+            // pnlRight
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.flowLayoutPanelLeft);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.pnlRight);
-            this.splitContainer1.Size = new System.Drawing.Size(1084, 791);
-            this.splitContainer1.SplitterDistance = 400;
-            this.splitContainer1.TabIndex = 11;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Team/Individual";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Participant Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Event Type";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Total Score";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Team/Individual";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Participant Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Total Score";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.pnlRight.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.pnlRight.Controls.Add(this.lblParticipants);
+            this.pnlRight.Controls.Add(this.dgvParticipants);
+            this.pnlRight.Controls.Add(this.lblRankings);
+            this.pnlRight.Controls.Add(this.dgvRankings);
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlRight.Location = new System.Drawing.Point(0, 0);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Size = new System.Drawing.Size(680, 791);
+            this.pnlRight.TabIndex = 1;
+            this.pnlRight.Resize += new System.EventHandler(this.pnlRight_Resize);
             // 
             // MainForm
             // 
@@ -560,14 +544,15 @@
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlContent.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.flowLayoutPanelLeft.ResumeLayout(false);
             this.grpConfigurePoints.ResumeLayout(false);
             this.grpConfigurePoints.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.pnlRight.ResumeLayout(false);
+            this.pnlRight.PerformLayout();
             this.ResumeLayout(false);
 
         }

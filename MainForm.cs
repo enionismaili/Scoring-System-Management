@@ -195,6 +195,17 @@ namespace TournamentScoringSystem
                 eventPoints.Add(eventName, points);
             }
         }
+
+        private void pnlRight_Resize(object sender, EventArgs e)
+        {
+            // Adjust the height of dgvParticipants and dgvRankings to fit the panel.
+            int availableHeight = pnlRight.Height - lblParticipants.Height - lblRankings.Height - 40; // Adjusting for some padding and labels
+            int halfHeight = availableHeight / 2;
+
+            dgvParticipants.Height = halfHeight;
+            dgvRankings.Height = halfHeight;
+            dgvRankings.Top = dgvParticipants.Bottom + 10; // Adding some padding between the grids
+        }
     }
 
     public class Participant
