@@ -167,12 +167,14 @@ namespace TournamentScoringSystem
             {
                 foreach (var member in team.Value)
                 {
-                    dgvParticipants.Rows.Add(team.Key, member.Name, member.TotalScore(), member.Type);
+                    string eventType = member.Scores.Count > 0 ? member.Scores[0].EventType : "";
+                    dgvParticipants.Rows.Add(team.Key, member.Name, eventType, member.TotalScore());
                 }
             }
             foreach (var individual in individuals)
             {
-                dgvParticipants.Rows.Add("Individual", individual.Name, individual.TotalScore(), individual.Type);
+                string eventType = individual.Scores.Count > 0 ? individual.Scores[0].EventType : "";
+                dgvParticipants.Rows.Add("Individual", individual.Name, eventType, individual.TotalScore());
             }
         }
 
@@ -198,14 +200,31 @@ namespace TournamentScoringSystem
 
         private void pnlRight_Resize(object sender, EventArgs e)
         {
-            // Adjust the height of dgvParticipants and dgvRankings to fit the panel.
-            int availableHeight = pnlRight.Height - lblParticipants.Height - lblRankings.Height - 40; // Adjusting for some padding and labels
+            int availableHeight = pnlRight.Height - lblParticipants.Height - lblRankings.Height - 60; // Adjusting for padding and labels
             int halfHeight = availableHeight / 2;
 
             dgvParticipants.Height = halfHeight;
+            lblRankings.Top = dgvParticipants.Bottom + 10; // Adding some padding between the participants and rankings
+            dgvRankings.Top = lblRankings.Bottom + 5; // Adding padding between the rankings label and the dgvRankings
             dgvRankings.Height = halfHeight;
-            dgvRankings.Top = dgvParticipants.Bottom + 10; // Adding some padding between the grids
         }
+
+        private void pnlHeader_Resize(object sender, EventArgs e)
+        {
+            // Center the lblTitle within pnlHeader
+            lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2;
+        }
+
+        private void flowLayoutPanelLeft_Resize(object sender, EventArgs e)
+        {
+            flowLayoutPanelLeft.Height = splitContainer1.Panel1.Height;
+            grpAddTeam.Width = flowLayoutPanelLeft.Width - 10; // Adjusting width to fit within panel
+            grpAddIndividual.Width = flowLayoutPanelLeft.Width - 10;
+            grpRecordScore.Width = flowLayoutPanelLeft.Width - 10;
+            grpConfigurePoints.Width = flowLayoutPanelLeft.Width - 10;
+            btnShowRankings.Width = flowLayoutPanelLeft.Width - 10;
+        }
+
     }
 
     public class Participant

@@ -289,8 +289,8 @@
             // 
             // dgvParticipants
             // 
-            this.dgvParticipants.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvParticipants.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvParticipants.BackgroundColor = System.Drawing.Color.White;
             this.dgvParticipants.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -329,8 +329,8 @@
             // 
             // dgvRankings
             // 
-            this.dgvRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRankings.BackgroundColor = System.Drawing.Color.White;
             this.dgvRankings.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -392,6 +392,7 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1084, 80);
             this.pnlHeader.TabIndex = 9;
+            this.pnlHeader.Resize += new System.EventHandler(this.pnlHeader_Resize);
             // 
             // pnlContent
             // 
@@ -436,6 +437,7 @@
             this.flowLayoutPanelLeft.Size = new System.Drawing.Size(400, 791);
             this.flowLayoutPanelLeft.TabIndex = 0;
             this.flowLayoutPanelLeft.WrapContents = false;
+            this.flowLayoutPanelLeft.Resize += new System.EventHandler(this.flowLayoutPanelLeft_Resize);
             // 
             // grpConfigurePoints
             // 
