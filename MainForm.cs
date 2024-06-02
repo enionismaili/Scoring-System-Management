@@ -207,6 +207,10 @@ namespace TournamentScoringSystem
             lblRankings.Top = dgvParticipants.Bottom + 10; // Adding some padding between the participants and rankings
             dgvRankings.Top = lblRankings.Bottom + 5; // Adding padding between the rankings label and the dgvRankings
             dgvRankings.Height = halfHeight;
+
+            // Adjust the columns to fill the DataGridViews
+            dgvParticipants.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvRankings.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void pnlHeader_Resize(object sender, EventArgs e)
@@ -218,12 +222,8 @@ namespace TournamentScoringSystem
         private void flowLayoutPanelLeft_Resize(object sender, EventArgs e)
         {
             flowLayoutPanelLeft.Height = splitContainer1.Panel1.Height;
-            grpAddTeam.Width = flowLayoutPanelLeft.Width - 10; // Adjusting width to fit within panel
-            grpAddIndividual.Width = flowLayoutPanelLeft.Width - 10;
-            grpRecordScore.Width = flowLayoutPanelLeft.Width - 10;
-            grpConfigurePoints.Width = flowLayoutPanelLeft.Width - 10;
-            btnShowRankings.Width = flowLayoutPanelLeft.Width - 10;
         }
+
 
     }
 
