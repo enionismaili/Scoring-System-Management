@@ -1,9 +1,14 @@
-﻿namespace TournamentScoringSystem
+﻿using System.Drawing;
+using System;
+using System.Windows.Forms;
+
+namespace TournamentScoringSystem
 {
     partial class MainForm
     {
         private System.ComponentModel.IContainer components = null;
 
+        // Dispose method to clean up any resources being used
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -13,8 +18,10 @@
             base.Dispose(disposing);
         }
 
+        // Method to initialize the components of the form
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lblTitle = new System.Windows.Forms.Label();
             this.grpAddTeam = new System.Windows.Forms.GroupBox();
             this.lblTeamName = new System.Windows.Forms.Label();
@@ -51,12 +58,16 @@
             this.pnlContent = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanelLeft = new System.Windows.Forms.FlowLayoutPanel();
-            this.grpConfigurePoints = new System.Windows.Forms.GroupBox();
-            this.lblEventName = new System.Windows.Forms.Label();
-            this.txtEventName = new System.Windows.Forms.TextBox();
-            this.lblEventPoints = new System.Windows.Forms.Label();
-            this.txtEventPoints = new System.Windows.Forms.TextBox();
-            this.btnUpdatePoints = new System.Windows.Forms.Button();
+            this.grpUpdateParticipant = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtUpdateParticipantName = new System.Windows.Forms.TextBox();
+            this.txtUpdateScore = new System.Windows.Forms.TextBox();
+            this.txtUpdateEventTitle = new System.Windows.Forms.TextBox();
+            this.txtUpdateEventType = new System.Windows.Forms.TextBox();
+            this.btnUpdateParticipant = new System.Windows.Forms.Button();
             this.btnShowRankings = new System.Windows.Forms.Button();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.grpAddTeam.SuspendLayout();
@@ -71,12 +82,13 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.flowLayoutPanelLeft.SuspendLayout();
-            this.grpConfigurePoints.SuspendLayout();
+            this.grpUpdateParticipant.SuspendLayout();
             this.pnlRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
+            // Title label for the form
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
@@ -88,6 +100,9 @@
             // 
             // grpAddTeam
             // 
+            // Group box for adding a team
+            this.grpAddTeam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpAddTeam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.grpAddTeam.Controls.Add(this.lblTeamName);
             this.grpAddTeam.Controls.Add(this.lblTeamMembers);
@@ -97,6 +112,7 @@
             this.grpAddTeam.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.grpAddTeam.ForeColor = System.Drawing.Color.White;
             this.grpAddTeam.Location = new System.Drawing.Point(3, 3);
+            this.grpAddTeam.MinimumSize = new System.Drawing.Size(380, 0);
             this.grpAddTeam.Name = "grpAddTeam";
             this.grpAddTeam.Size = new System.Drawing.Size(380, 200);
             this.grpAddTeam.TabIndex = 1;
@@ -105,6 +121,7 @@
             // 
             // lblTeamName
             // 
+            // Label for team name input
             this.lblTeamName.AutoSize = true;
             this.lblTeamName.Location = new System.Drawing.Point(20, 40);
             this.lblTeamName.Name = "lblTeamName";
@@ -114,6 +131,7 @@
             // 
             // lblTeamMembers
             // 
+            // Label for team members input
             this.lblTeamMembers.AutoSize = true;
             this.lblTeamMembers.Location = new System.Drawing.Point(20, 90);
             this.lblTeamMembers.Name = "lblTeamMembers";
@@ -123,20 +141,25 @@
             // 
             // txtTeamName
             // 
+            // TextBox for team name input
             this.txtTeamName.Location = new System.Drawing.Point(150, 40);
             this.txtTeamName.Name = "txtTeamName";
             this.txtTeamName.Size = new System.Drawing.Size(210, 29);
             this.txtTeamName.TabIndex = 0;
+            this.txtTeamName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             // 
             // txtTeamMembers
             // 
+            // TextBox for team members input
             this.txtTeamMembers.Location = new System.Drawing.Point(150, 90);
             this.txtTeamMembers.Name = "txtTeamMembers";
             this.txtTeamMembers.Size = new System.Drawing.Size(210, 29);
             this.txtTeamMembers.TabIndex = 1;
+            this.txtTeamMembers.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             // 
             // btnAddTeam
             // 
+            // Button to add a team
             this.btnAddTeam.BackColor = System.Drawing.Color.MediumTurquoise;
             this.btnAddTeam.ForeColor = System.Drawing.Color.White;
             this.btnAddTeam.Location = new System.Drawing.Point(285, 135);
@@ -145,10 +168,14 @@
             this.btnAddTeam.TabIndex = 2;
             this.btnAddTeam.Text = "Add";
             this.btnAddTeam.UseVisualStyleBackColor = false;
+            this.btnAddTeam.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.btnAddTeam.Click += new System.EventHandler(this.btnAddTeam_Click);
             // 
             // grpAddIndividual
             // 
+            // Group box for adding an individual
+            this.grpAddIndividual.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpAddIndividual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.grpAddIndividual.Controls.Add(this.lblIndividualName);
             this.grpAddIndividual.Controls.Add(this.txtIndividualName);
@@ -156,6 +183,7 @@
             this.grpAddIndividual.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.grpAddIndividual.ForeColor = System.Drawing.Color.White;
             this.grpAddIndividual.Location = new System.Drawing.Point(3, 209);
+            this.grpAddIndividual.MinimumSize = new System.Drawing.Size(380, 0);
             this.grpAddIndividual.Name = "grpAddIndividual";
             this.grpAddIndividual.Size = new System.Drawing.Size(380, 150);
             this.grpAddIndividual.TabIndex = 2;
@@ -164,6 +192,7 @@
             // 
             // lblIndividualName
             // 
+            // Label for individual name input
             this.lblIndividualName.AutoSize = true;
             this.lblIndividualName.Location = new System.Drawing.Point(20, 40);
             this.lblIndividualName.Name = "lblIndividualName";
@@ -173,13 +202,16 @@
             // 
             // txtIndividualName
             // 
+            // TextBox for individual name input
             this.txtIndividualName.Location = new System.Drawing.Point(150, 40);
             this.txtIndividualName.Name = "txtIndividualName";
             this.txtIndividualName.Size = new System.Drawing.Size(210, 29);
             this.txtIndividualName.TabIndex = 0;
+            this.txtIndividualName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             // 
             // btnAddIndividual
             // 
+            // Button to add an individual
             this.btnAddIndividual.BackColor = System.Drawing.Color.MediumTurquoise;
             this.btnAddIndividual.ForeColor = System.Drawing.Color.White;
             this.btnAddIndividual.Location = new System.Drawing.Point(285, 90);
@@ -188,10 +220,14 @@
             this.btnAddIndividual.TabIndex = 1;
             this.btnAddIndividual.Text = "Add";
             this.btnAddIndividual.UseVisualStyleBackColor = false;
+            this.btnAddIndividual.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.btnAddIndividual.Click += new System.EventHandler(this.btnAddIndividual_Click);
             // 
             // grpRecordScore
             // 
+            // Group box for recording a score
+            this.grpRecordScore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpRecordScore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.grpRecordScore.Controls.Add(this.lblParticipantName);
             this.grpRecordScore.Controls.Add(this.lblScore);
@@ -205,6 +241,7 @@
             this.grpRecordScore.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.grpRecordScore.ForeColor = System.Drawing.Color.White;
             this.grpRecordScore.Location = new System.Drawing.Point(3, 365);
+            this.grpRecordScore.MinimumSize = new System.Drawing.Size(380, 0);
             this.grpRecordScore.Name = "grpRecordScore";
             this.grpRecordScore.Size = new System.Drawing.Size(380, 280);
             this.grpRecordScore.TabIndex = 3;
@@ -213,6 +250,7 @@
             // 
             // lblParticipantName
             // 
+            // Label for participant name input
             this.lblParticipantName.AutoSize = true;
             this.lblParticipantName.Location = new System.Drawing.Point(20, 40);
             this.lblParticipantName.Name = "lblParticipantName";
@@ -222,6 +260,7 @@
             // 
             // lblScore
             // 
+            // Label for score input
             this.lblScore.AutoSize = true;
             this.lblScore.Location = new System.Drawing.Point(20, 90);
             this.lblScore.Name = "lblScore";
@@ -231,52 +270,63 @@
             // 
             // lblEvent
             // 
+            // Label for event title input
             this.lblEvent.AutoSize = true;
             this.lblEvent.Location = new System.Drawing.Point(20, 140);
             this.lblEvent.Name = "lblEvent";
-            this.lblEvent.Size = new System.Drawing.Size(48, 21);
+            this.lblEvent.Size = new System.Drawing.Size(81, 21);
             this.lblEvent.TabIndex = 7;
-            this.lblEvent.Text = "Event";
+            this.lblEvent.Text = "Event Title";
             // 
             // lblEventType
             // 
+            // Label for event category input
             this.lblEventType.AutoSize = true;
             this.lblEventType.Location = new System.Drawing.Point(20, 190);
             this.lblEventType.Name = "lblEventType";
-            this.lblEventType.Size = new System.Drawing.Size(84, 21);
+            this.lblEventType.Size = new System.Drawing.Size(115, 21);
             this.lblEventType.TabIndex = 8;
-            this.lblEventType.Text = "Event Type";
+            this.lblEventType.Text = "Event Category";
             // 
             // txtParticipantName
             // 
+            // TextBox for participant name input
             this.txtParticipantName.Location = new System.Drawing.Point(150, 40);
             this.txtParticipantName.Name = "txtParticipantName";
             this.txtParticipantName.Size = new System.Drawing.Size(210, 29);
             this.txtParticipantName.TabIndex = 0;
+            this.txtParticipantName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             // 
             // txtScore
             // 
+            // TextBox for score input
             this.txtScore.Location = new System.Drawing.Point(150, 90);
             this.txtScore.Name = "txtScore";
             this.txtScore.Size = new System.Drawing.Size(210, 29);
             this.txtScore.TabIndex = 1;
+            this.txtScore.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             // 
             // txtEvent
             // 
+            // TextBox for event title input
             this.txtEvent.Location = new System.Drawing.Point(150, 140);
             this.txtEvent.Name = "txtEvent";
             this.txtEvent.Size = new System.Drawing.Size(210, 29);
             this.txtEvent.TabIndex = 2;
+            this.txtEvent.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             // 
             // txtEventType
             // 
+            // TextBox for event category input
             this.txtEventType.Location = new System.Drawing.Point(150, 190);
             this.txtEventType.Name = "txtEventType";
             this.txtEventType.Size = new System.Drawing.Size(210, 29);
             this.txtEventType.TabIndex = 3;
+            this.txtEventType.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             // 
             // btnRecordScore
             // 
+            // Button to record the score
             this.btnRecordScore.BackColor = System.Drawing.Color.MediumTurquoise;
             this.btnRecordScore.ForeColor = System.Drawing.Color.White;
             this.btnRecordScore.Location = new System.Drawing.Point(285, 235);
@@ -285,12 +335,14 @@
             this.btnRecordScore.TabIndex = 4;
             this.btnRecordScore.Text = "Record";
             this.btnRecordScore.UseVisualStyleBackColor = false;
+            this.btnRecordScore.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.btnRecordScore.Click += new System.EventHandler(this.btnRecordScore_Click);
             // 
             // dgvParticipants
             // 
-            this.dgvParticipants.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            // DataGridView to display participants
+            this.dgvParticipants.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvParticipants.BackgroundColor = System.Drawing.Color.White;
             this.dgvParticipants.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -309,32 +361,37 @@
             // 
             // dataGridViewTextBoxColumn4
             // 
+            // DataGridView column for team/individual
             this.dataGridViewTextBoxColumn4.HeaderText = "Team/Individual";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.Width = 150;
             // 
             // dataGridViewTextBoxColumn5
             // 
+            // DataGridView column for participant name
             this.dataGridViewTextBoxColumn5.HeaderText = "Participant Name";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.Width = 160;
             // 
             // dataGridViewTextBoxColumn6
             // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Event Type";
+            // DataGridView column for event title
+            this.dataGridViewTextBoxColumn6.HeaderText = "Event Title";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 130;
+            this.dataGridViewTextBoxColumn6.Width = 125;
             // 
             // dataGridViewTextBoxColumn7
             // 
+            // DataGridView column for total score
             this.dataGridViewTextBoxColumn7.HeaderText = "Total Score";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 150;
+            this.dataGridViewTextBoxColumn7.Width = 125;
             // 
             // dgvRankings
             // 
-            this.dgvRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            // DataGridView to display rankings
+            this.dgvRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRankings.BackgroundColor = System.Drawing.Color.White;
             this.dgvRankings.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -352,24 +409,28 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
+            // DataGridView column for team/individual in rankings
             this.dataGridViewTextBoxColumn1.HeaderText = "Team/Individual";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 150;
+            this.dataGridViewTextBoxColumn1.Width = 186;
             // 
             // dataGridViewTextBoxColumn2
             // 
+            // DataGridView column for participant name in rankings
             this.dataGridViewTextBoxColumn2.HeaderText = "Participant Name";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 200;
+            this.dataGridViewTextBoxColumn2.Width = 188;
             // 
             // dataGridViewTextBoxColumn3
             // 
+            // DataGridView column for total score in rankings
             this.dataGridViewTextBoxColumn3.HeaderText = "Total Score";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 150;
+            this.dataGridViewTextBoxColumn3.Width = 186;
             // 
             // lblParticipants
             // 
+            // Label for participants section
             this.lblParticipants.AutoSize = true;
             this.lblParticipants.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblParticipants.ForeColor = System.Drawing.Color.Black;
@@ -381,6 +442,7 @@
             // 
             // lblRankings
             // 
+            // Label for rankings section
             this.lblRankings.AutoSize = true;
             this.lblRankings.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblRankings.ForeColor = System.Drawing.Color.Black;
@@ -392,6 +454,7 @@
             // 
             // pnlHeader
             // 
+            // Panel for the header section
             this.pnlHeader.BackColor = System.Drawing.Color.Navy;
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -403,6 +466,7 @@
             // 
             // pnlContent
             // 
+            // Panel for the content section
             this.pnlContent.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlContent.Controls.Add(this.splitContainer1);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -413,6 +477,7 @@
             // 
             // splitContainer1
             // 
+            // SplitContainer to divide the left and right panels
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -430,12 +495,13 @@
             // 
             // flowLayoutPanelLeft
             // 
+            // FlowLayoutPanel for the left side controls
             this.flowLayoutPanelLeft.AutoScroll = true;
             this.flowLayoutPanelLeft.BackColor = System.Drawing.Color.DarkSlateGray;
             this.flowLayoutPanelLeft.Controls.Add(this.grpAddTeam);
             this.flowLayoutPanelLeft.Controls.Add(this.grpAddIndividual);
             this.flowLayoutPanelLeft.Controls.Add(this.grpRecordScore);
-            this.flowLayoutPanelLeft.Controls.Add(this.grpConfigurePoints);
+            this.flowLayoutPanelLeft.Controls.Add(this.grpUpdateParticipant);
             this.flowLayoutPanelLeft.Controls.Add(this.btnShowRankings);
             this.flowLayoutPanelLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelLeft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -446,82 +512,139 @@
             this.flowLayoutPanelLeft.WrapContents = false;
             this.flowLayoutPanelLeft.Resize += new System.EventHandler(this.flowLayoutPanelLeft_Resize);
             // 
-            // grpConfigurePoints
+            // grpUpdateParticipant
             // 
-            this.grpConfigurePoints.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.grpConfigurePoints.Controls.Add(this.lblEventName);
-            this.grpConfigurePoints.Controls.Add(this.txtEventName);
-            this.grpConfigurePoints.Controls.Add(this.lblEventPoints);
-            this.grpConfigurePoints.Controls.Add(this.txtEventPoints);
-            this.grpConfigurePoints.Controls.Add(this.btnUpdatePoints);
-            this.grpConfigurePoints.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.grpConfigurePoints.ForeColor = System.Drawing.Color.White;
-            this.grpConfigurePoints.Location = new System.Drawing.Point(3, 651);
-            this.grpConfigurePoints.Name = "grpConfigurePoints";
-            this.grpConfigurePoints.Size = new System.Drawing.Size(380, 200);
-            this.grpConfigurePoints.TabIndex = 10;
-            this.grpConfigurePoints.TabStop = false;
-            this.grpConfigurePoints.Text = "Configure Event Points";
+            // Group box for updating a participant
+            this.grpUpdateParticipant.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpUpdateParticipant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.grpUpdateParticipant.Controls.Add(this.label4);
+            this.grpUpdateParticipant.Controls.Add(this.label3);
+            this.grpUpdateParticipant.Controls.Add(this.label2);
+            this.grpUpdateParticipant.Controls.Add(this.label1);
+            this.grpUpdateParticipant.Controls.Add(this.txtUpdateParticipantName);
+            this.grpUpdateParticipant.Controls.Add(this.txtUpdateScore);
+            this.grpUpdateParticipant.Controls.Add(this.txtUpdateEventTitle);
+            this.grpUpdateParticipant.Controls.Add(this.txtUpdateEventType);
+            this.grpUpdateParticipant.Controls.Add(this.btnUpdateParticipant);
+            this.grpUpdateParticipant.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grpUpdateParticipant.ForeColor = System.Drawing.Color.White;
+            this.grpUpdateParticipant.Location = new System.Drawing.Point(3, 651);
+            this.grpUpdateParticipant.MinimumSize = new System.Drawing.Size(380, 0);
+            this.grpUpdateParticipant.Name = "grpUpdateParticipant";
+            this.grpUpdateParticipant.Size = new System.Drawing.Size(380, 250);
+            this.grpUpdateParticipant.TabIndex = 10;
+            this.grpUpdateParticipant.TabStop = false;
+            this.grpUpdateParticipant.Text = "Update Participant";
             // 
-            // lblEventName
+            // label4
             // 
-            this.lblEventName.AutoSize = true;
-            this.lblEventName.Location = new System.Drawing.Point(20, 40);
-            this.lblEventName.Name = "lblEventName";
-            this.lblEventName.Size = new System.Drawing.Size(94, 21);
-            this.lblEventName.TabIndex = 0;
-            this.lblEventName.Text = "Event Name";
+            // Label for event category input in update participant section
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 168);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 21);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Event Category";
             // 
-            // txtEventName
+            // label3
             // 
-            this.txtEventName.Location = new System.Drawing.Point(150, 40);
-            this.txtEventName.Name = "txtEventName";
-            this.txtEventName.Size = new System.Drawing.Size(210, 29);
-            this.txtEventName.TabIndex = 1;
+            // Label for event title input in update participant section
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 128);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 21);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Event Title";
             // 
-            // lblEventPoints
+            // label2
             // 
-            this.lblEventPoints.AutoSize = true;
-            this.lblEventPoints.Location = new System.Drawing.Point(20, 90);
-            this.lblEventPoints.Name = "lblEventPoints";
-            this.lblEventPoints.Size = new System.Drawing.Size(94, 21);
-            this.lblEventPoints.TabIndex = 2;
-            this.lblEventPoints.Text = "Event Points";
+            // Label for score input in update participant section
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 21);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Score";
             // 
-            // txtEventPoints
+            // label1
             // 
-            this.txtEventPoints.Location = new System.Drawing.Point(150, 90);
-            this.txtEventPoints.Name = "txtEventPoints";
-            this.txtEventPoints.Size = new System.Drawing.Size(210, 29);
-            this.txtEventPoints.TabIndex = 3;
+            // Label for participant name input in update participant section
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 21);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Participant Name";
             // 
-            // btnUpdatePoints
+            // txtUpdateParticipantName
             // 
-            this.btnUpdatePoints.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.btnUpdatePoints.ForeColor = System.Drawing.Color.White;
-            this.btnUpdatePoints.Location = new System.Drawing.Point(285, 135);
-            this.btnUpdatePoints.Name = "btnUpdatePoints";
-            this.btnUpdatePoints.Size = new System.Drawing.Size(75, 30);
-            this.btnUpdatePoints.TabIndex = 4;
-            this.btnUpdatePoints.Text = "Update";
-            this.btnUpdatePoints.UseVisualStyleBackColor = false;
-            this.btnUpdatePoints.Click += new System.EventHandler(this.btnUpdatePoints_Click);
+            // TextBox for participant name input in update participant section
+            this.txtUpdateParticipantName.Location = new System.Drawing.Point(150, 28);
+            this.txtUpdateParticipantName.Name = "txtUpdateParticipantName";
+            this.txtUpdateParticipantName.Size = new System.Drawing.Size(210, 29);
+            this.txtUpdateParticipantName.TabIndex = 1;
+            this.txtUpdateParticipantName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            // 
+            // txtUpdateScore
+            // 
+            // TextBox for score input in update participant section
+            this.txtUpdateScore.Location = new System.Drawing.Point(150, 72);
+            this.txtUpdateScore.Name = "txtUpdateScore";
+            this.txtUpdateScore.Size = new System.Drawing.Size(210, 29);
+            this.txtUpdateScore.TabIndex = 3;
+            this.txtUpdateScore.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            // 
+            // txtUpdateEventTitle
+            // 
+            // TextBox for event title input in update participant section
+            this.txtUpdateEventTitle.Location = new System.Drawing.Point(150, 120);
+            this.txtUpdateEventTitle.Name = "txtUpdateEventTitle";
+            this.txtUpdateEventTitle.Size = new System.Drawing.Size(210, 29);
+            this.txtUpdateEventTitle.TabIndex = 5;
+            this.txtUpdateEventTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            // 
+            // txtUpdateEventType
+            // 
+            // TextBox for event category input in update participant section
+            this.txtUpdateEventType.Location = new System.Drawing.Point(150, 165);
+            this.txtUpdateEventType.Name = "txtUpdateEventType";
+            this.txtUpdateEventType.Size = new System.Drawing.Size(210, 29);
+            this.txtUpdateEventType.TabIndex = 7;
+            this.txtUpdateEventType.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            // 
+            // btnUpdateParticipant
+            // 
+            // Button to update the participant information
+            this.btnUpdateParticipant.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.btnUpdateParticipant.ForeColor = System.Drawing.Color.Transparent;
+            this.btnUpdateParticipant.Location = new System.Drawing.Point(285, 214);
+            this.btnUpdateParticipant.Name = "btnUpdateParticipant";
+            this.btnUpdateParticipant.Size = new System.Drawing.Size(75, 30);
+            this.btnUpdateParticipant.TabIndex = 8;
+            this.btnUpdateParticipant.Text = "Update";
+            this.btnUpdateParticipant.UseVisualStyleBackColor = false;
+            this.btnUpdateParticipant.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.btnUpdateParticipant.Click += new System.EventHandler(this.btnUpdateParticipant_Click);
             // 
             // btnShowRankings
             // 
+            // Button to show the rankings
             this.btnShowRankings.BackColor = System.Drawing.Color.MediumTurquoise;
             this.btnShowRankings.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnShowRankings.ForeColor = System.Drawing.Color.White;
-            this.btnShowRankings.Location = new System.Drawing.Point(3, 857);
+            this.btnShowRankings.Location = new System.Drawing.Point(3, 907);
             this.btnShowRankings.Name = "btnShowRankings";
             this.btnShowRankings.Size = new System.Drawing.Size(200, 35);
             this.btnShowRankings.TabIndex = 9;
             this.btnShowRankings.Text = "Show Rankings";
             this.btnShowRankings.UseVisualStyleBackColor = false;
+            this.btnShowRankings.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.btnShowRankings.Click += new System.EventHandler(this.btnShowRankings_Click);
             // 
             // pnlRight
             // 
+            // Panel for the right section
             this.pnlRight.BackColor = System.Drawing.Color.MediumTurquoise;
             this.pnlRight.Controls.Add(this.lblParticipants);
             this.pnlRight.Controls.Add(this.dgvParticipants);
@@ -536,9 +659,11 @@
             // 
             // MainForm
             // 
+            // MainForm settings
             this.ClientSize = new System.Drawing.Size(1084, 871);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlHeader);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tournament Scoring System";
@@ -558,8 +683,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.flowLayoutPanelLeft.ResumeLayout(false);
-            this.grpConfigurePoints.ResumeLayout(false);
-            this.grpConfigurePoints.PerformLayout();
+            this.grpUpdateParticipant.ResumeLayout(false);
+            this.grpUpdateParticipant.PerformLayout();
             this.pnlRight.ResumeLayout(false);
             this.pnlRight.PerformLayout();
             this.ResumeLayout(false);
@@ -596,12 +721,6 @@
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelLeft;
         private System.Windows.Forms.Panel pnlRight;
-        private System.Windows.Forms.GroupBox grpConfigurePoints;
-        private System.Windows.Forms.Label lblEventName;
-        private System.Windows.Forms.TextBox txtEventName;
-        private System.Windows.Forms.Label lblEventPoints;
-        private System.Windows.Forms.TextBox txtEventPoints;
-        private System.Windows.Forms.Button btnUpdatePoints;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -610,7 +729,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.GroupBox grpUpdateParticipant;
+        private System.Windows.Forms.TextBox txtUpdateParticipantName;
+        private System.Windows.Forms.TextBox txtUpdateScore;
+        private System.Windows.Forms.TextBox txtUpdateEventTitle;
+        private System.Windows.Forms.TextBox txtUpdateEventType;
+        private System.Windows.Forms.Button btnUpdateParticipant;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
-    

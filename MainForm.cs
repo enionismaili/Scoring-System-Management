@@ -5,18 +5,20 @@ using System.Windows.Forms;
 
 namespace TournamentScoringSystem
 {
+    // Main form class for the Tournament Scoring System application
     public partial class MainForm : Form
     {
-        private Dictionary<string, List<Participant>> teams;
-        private List<Participant> individuals;
-        private int teamCount;
-        private int individualCount;
-        private const int MaxTeams = 4;
-        private const int MaxIndividuals = 20;
-        private const int MaxEvents = 5;
+        private Dictionary<string, List<Participant>> teams; // Stores teams and their participants
+        private List<Participant> individuals; // Stores individual participants
+        private int teamCount; // Current number of teams
+        private int individualCount; // Current number of individual participants
+        private const int MaxTeams = 4; // Maximum number of teams allowed
+        private const int MaxIndividuals = 20; // Maximum number of individual participants allowed
+        private const int MaxEvents = 5; // Maximum number of events allowed
 
-        private Dictionary<string, int[]> eventPoints;
+        private Dictionary<string, int[]> eventPoints; // Stores points for each event based on ranks
 
+        // Constructor initializes components and data structures
         public MainForm()
         {
             InitializeComponent();
@@ -34,6 +36,7 @@ namespace TournamentScoringSystem
             };
         }
 
+        // Event handler for adding a new team
         private void btnAddTeam_Click(object sender, EventArgs e)
         {
             if (teamCount >= MaxTeams)
@@ -42,7 +45,7 @@ namespace TournamentScoringSystem
                 return;
             }
 
-            string teamName = txtTeamName.Text;
+            string teamName = txtTeamName.Text.Trim();
             string[] memberNames = txtTeamMembers.Text.Split(',');
 
             if (memberNames.Length != 5)
@@ -64,6 +67,7 @@ namespace TournamentScoringSystem
             }
         }
 
+        // Event handler for adding a new individual participant
         private void btnAddIndividual_Click(object sender, EventArgs e)
         {
             if (individualCount >= MaxIndividuals)
@@ -72,8 +76,8 @@ namespace TournamentScoringSystem
                 return;
             }
 
-            string name = txtIndividualName.Text;
-            if (!individuals.Any(p => p.Name == name))
+            string name = txtIndividualName.Text.Trim();
+            if (!individuals.Any(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
             {
                 individuals.Add(new Participant(name, "Individual"));
                 individualCount++;
@@ -85,39 +89,27 @@ namespace TournamentScoringSystem
             }
         }
 
+        // Event handler for recording a score for a participant
         private void btnRecordScore_Click(object sender, EventArgs e)
         {
-            string participantName = txtParticipantName.Text;
-            string eventType = txtEventType.Text;
-            string score = txtScore.Text;
-            string eventName = txtEvent.Text;
+            string participantName = txtParticipantName.Text.Trim();
+            string eventType = txtEventType.Text.Trim();
+            string score = txtScore.Text.Trim();
+            string eventName = txtEvent.Text.Trim();
 
-            foreach (var team in teams.Values)
+            var participant = FindParticipant(participantName);
+
+            if (participant != null)
             {
-                var member = team.FirstOrDefault(p => p.Name == participantName);
-                if (member != null)
+                try
                 {
-                    if (member.Scores.Any(s => s.Event == eventName))
-                    {
-                        MessageBox.Show("Participant has already completed this event.");
-                        return;
-                    }
-                    member.AddScore(eventName, score, eventType);
+                    participant.AddScore(eventName, score, eventType);
                     UpdateParticipantList();
-                    return;
                 }
-            }
-
-            var individual = individuals.FirstOrDefault(p => p.Name == participantName);
-            if (individual != null)
-            {
-                if (individual.Scores.Any(s => s.Event == eventName))
+                catch (InvalidOperationException ex)
                 {
-                    MessageBox.Show("Participant has already completed this event.");
-                    return;
+                    MessageBox.Show(ex.Message);
                 }
-                individual.AddScore(eventName, score, eventType);
-                UpdateParticipantList();
             }
             else
             {
@@ -125,14 +117,86 @@ namespace TournamentScoringSystem
             }
         }
 
+        // Event handler for displaying the rankings
         private void btnShowRankings_Click(object sender, EventArgs e)
         {
+            UpdateRankings();
+        }
+
+        // Event handler for updating a participant's score
+        private void btnUpdateParticipant_Click(object sender, EventArgs e)
+        {
+            string name = txtUpdateParticipantName.Text.Trim();
+            string newScore = txtUpdateScore.Text.Trim();
+            string newEventTitle = txtUpdateEventTitle.Text.Trim();
+            string newEventType = txtUpdateEventType.Text.Trim();
+
+            var participant = FindParticipant(name);
+
+            if (participant != null)
+            {
+                try
+                {
+                    participant.UpdateScore(newEventTitle, newScore, newEventType);
+                    UpdateParticipantList();
+                    MessageBox.Show("Participant updated successfully!");
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Participant not found!");
+            }
+        }
+
+        // Finds a participant by name from the teams and individuals lists
+        private Participant FindParticipant(string name)
+        {
+            foreach (var team in teams.Values)
+            {
+                var member = team.FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+                if (member != null)
+                {
+                    return member;
+                }
+            }
+
+            return individuals.FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        // Updates the participant list in the DataGridView
+        private void UpdateParticipantList()
+        {
+            dgvParticipants.Rows.Clear();
+
+            foreach (var team in teams)
+            {
+                foreach (var member in team.Value)
+                {
+                    dgvParticipants.Rows.Add(team.Key, member.Name, member.GetLatestEvent(), member.TotalScore());
+                }
+            }
+
+            foreach (var individual in individuals)
+            {
+                dgvParticipants.Rows.Add("Individual", individual.Name, individual.GetLatestEvent(), individual.TotalScore());
+            }
+        }
+
+        // Updates the rankings based on participants' scores
+        private void UpdateRankings()
+        {
             dgvRankings.Rows.Clear();
+
             var allParticipants = teams.Values.SelectMany(team => team).Concat(individuals).ToList();
             foreach (var participant in allParticipants)
             {
                 participant.TotalPoints = participant.Scores.Sum(s => double.TryParse(s.Score, out var result) ? result : 0);
             }
+
             foreach (var eventGroup in allParticipants.SelectMany(p => p.Scores).GroupBy(s => s.Event))
             {
                 var rankedParticipants = eventGroup.OrderByDescending(s => double.TryParse(s.Score, out var result) ? result : 0).ToList();
@@ -143,6 +207,7 @@ namespace TournamentScoringSystem
                     participant.AddPoints(eventGroup.Key, points);
                 }
             }
+
             var rankings = allParticipants.OrderByDescending(p => p.TotalPoints).ToList();
             foreach (var participant in rankings)
             {
@@ -150,6 +215,7 @@ namespace TournamentScoringSystem
             }
         }
 
+        // Gets points for a specific rank in an event
         private int GetPointsForRank(string eventName, int rank)
         {
             if (eventPoints.ContainsKey(eventName))
@@ -160,101 +226,115 @@ namespace TournamentScoringSystem
             return 0;
         }
 
-        private void UpdateParticipantList()
-        {
-            dgvParticipants.Rows.Clear();
-            foreach (var team in teams)
-            {
-                foreach (var member in team.Value)
-                {
-                    string eventType = member.Scores.Count > 0 ? member.Scores[0].EventType : "";
-                    dgvParticipants.Rows.Add(team.Key, member.Name, eventType, member.TotalScore());
-                }
-            }
-            foreach (var individual in individuals)
-            {
-                string eventType = individual.Scores.Count > 0 ? individual.Scores[0].EventType : "";
-                dgvParticipants.Rows.Add("Individual", individual.Name, eventType, individual.TotalScore());
-            }
-        }
-
-        private void btnUpdatePoints_Click(object sender, EventArgs e)
-        {
-            string eventName = txtEventName.Text;
-            string[] pointsText = txtEventPoints.Text.Split(',');
-            int[] points = pointsText.Select(p => int.TryParse(p, out var value) ? value : 0).ToArray();
-            UpdateEventPoints(eventName, points);
-        }
-
-        private void UpdateEventPoints(string eventName, int[] points)
-        {
-            if (eventPoints.ContainsKey(eventName))
-            {
-                eventPoints[eventName] = points;
-            }
-            else
-            {
-                eventPoints.Add(eventName, points);
-            }
-        }
-
+        // Resizes the right panel to adjust DataGridView heights
         private void pnlRight_Resize(object sender, EventArgs e)
         {
-            int availableHeight = pnlRight.Height - lblParticipants.Height - lblRankings.Height - 60; // Adjusting for padding and labels
+            int availableHeight = pnlRight.Height - lblParticipants.Height - lblRankings.Height - 60;
             int halfHeight = availableHeight / 2;
 
             dgvParticipants.Height = halfHeight;
-            lblRankings.Top = dgvParticipants.Bottom + 10; // Adding some padding between the participants and rankings
-            dgvRankings.Top = lblRankings.Bottom + 5; // Adding padding between the rankings label and the dgvRankings
+            lblRankings.Top = dgvParticipants.Bottom + 10;
+            dgvRankings.Top = lblRankings.Bottom + 5;
             dgvRankings.Height = halfHeight;
 
-            // Adjust the columns to fill the DataGridViews
             dgvParticipants.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRankings.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
+        // Centers the title label in the header panel
         private void pnlHeader_Resize(object sender, EventArgs e)
         {
-            // Center the lblTitle within pnlHeader
             lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2;
         }
 
+        // Adjusts the width of controls in the left flow layout panel
         private void flowLayoutPanelLeft_Resize(object sender, EventArgs e)
         {
-            flowLayoutPanelLeft.Height = splitContainer1.Panel1.Height;
+            foreach (Control control in flowLayoutPanelLeft.Controls)
+            {
+                control.Width = flowLayoutPanelLeft.ClientSize.Width - 20;
+            }
         }
-
 
     }
 
+    // Represents a participant in the tournament
     public class Participant
     {
         public string Name { get; set; }
         public string Type { get; private set; }
-        public List<(string Event, string Score, string EventType)> Scores { get; private set; }
+        public List<EventScore> Scores { get; private set; }
         public double TotalPoints { get; set; }
 
         public Participant(string name, string type)
         {
             Name = name;
             Type = type;
-            Scores = new List<(string Event, string Score, string EventType)>();
+            Scores = new List<EventScore>();
             TotalPoints = 0;
         }
 
+        // Adds a score for a participant in an event
         public void AddScore(string eventName, string score, string eventType)
         {
-            Scores.Add((eventName, score, eventType));
+            var existingScore = Scores.FirstOrDefault(s => s.Event == eventName);
+            if (existingScore != null)
+            {
+                existingScore.Score = score;
+                existingScore.EventType = eventType;
+            }
+            else
+            {
+                Scores.Add(new EventScore(eventName, score, eventType));
+            }
         }
 
+        // Adds points to the participant's total score
         public void AddPoints(string eventName, int points)
         {
             TotalPoints += points;
         }
 
+        // Calculates the total score of the participant
         public double TotalScore()
         {
             return Scores.Sum(s => double.TryParse(s.Score, out var result) ? result : 0);
+        }
+
+        // Updates the score for a specific event
+        public void UpdateScore(string eventName, string newScore, string newEventType)
+        {
+            var existingScore = Scores.FirstOrDefault(s => s.Event == eventName);
+            if (existingScore != null)
+            {
+                existingScore.Score = newScore;
+                existingScore.EventType = newEventType;
+            }
+            else
+            {
+                throw new InvalidOperationException("The player hasn't been a part of any event yet!");
+            }
+        }
+
+        // Gets the latest event the participant participated in
+        public string GetLatestEvent()
+        {
+            return Scores.Count > 0 ? Scores.Last().Event : "";
+        }
+    }
+
+    // Represents a score in an event for a participant
+    public class EventScore
+    {
+        public string Event { get; set; }
+        public string Score { get; set; }
+        public string EventType { get; set; }
+
+        public EventScore(string eventName, string score, string eventType)
+        {
+            Event = eventName;
+            Score = score;
+            EventType = eventType;
         }
     }
 }
